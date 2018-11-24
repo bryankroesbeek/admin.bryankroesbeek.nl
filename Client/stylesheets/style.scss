@@ -1,0 +1,47 @@
+@import 'variables';
+@import 'imports';
+@import 'admin/admin';
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+p{
+    font-family: 'Open Sans'
+}
+
+a {
+    font-family: 'Open Sans';
+    text-decoration: none;
+    color: darken(#1cdb56, 10%);
+    &:hover {
+        color: lighten(#1cdb56, 20%);
+    }
+}
+
+h1, h2{
+    font-family: 'Roboto'
+}
+
+body, html {
+    height: 100%;
+}
+
+body {
+    background: #ebebeb url('/images/noise3.png');
+    background-repeat: repeat;
+    overflow-x: hidden!important;
+}
+
+#react-app{
+    display: flex;
+    height: 100%;
+}
+
+.page {
+    width: 100%;
+    display: inline-flex;
+    flex-direction: column;
+}

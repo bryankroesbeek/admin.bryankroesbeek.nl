@@ -1,0 +1,9 @@
+@import 'login';
+@import 'sidebar/sidebar';
+@import 'header';
+
+.admin-content{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}

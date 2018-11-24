@@ -1,0 +1,16 @@
+.admin-header {
+    display: flex;
+    flex-shrink: 0;
+    height: 75px;
+    border-bottom: 4px solid #1cdb56;
+    width: 100%;
+    background: #464646FF;
+}
+.admin-title{
+    text-decoration: none;
+    font-family: 'Roboto Condensed';
+    font-weight: 500;
+    font-size: 30px;
+    margin: auto;
+    color: #1cdb56;
+}
