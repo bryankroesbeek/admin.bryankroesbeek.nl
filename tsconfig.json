@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "outDir": "./app/assets/javascripts",
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "module": "commonjs",
+        "target": "es5",
+        "lib": ["dom", "es2015"],
+        "jsx": "react"
+    },
+    "include": [
+        "./Client/**/*"
+    ]
+}
