@@ -35,7 +35,7 @@ export class Sidebar extends React.Component<SidebarProps, SidebarState> {
             </div>
             <div className="sidebar-items">
                 {
-                    this.state.sideElements.map((tableName, count) => <Link to={`/admin/${tableName}`} className="sidebar-item-link" key={`item-${count}`}>
+                    this.state.sideElements.map((tableName, count) => <Link to={`/${tableName}`} className="sidebar-item-link" key={`item-${count}`}>
                         <div className="table-name">{tableName}</div>
                     </Link>)
                 }
