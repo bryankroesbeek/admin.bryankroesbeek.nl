@@ -9,6 +9,7 @@ export function getResources<T>(url: string) {
 export function postResources<T>(url: string, body: T) {
     let headers = new Headers()
     headers.append('content-type', 'application/json')
+    headers.append('X-CSRF-Token', document.getElementsByName("csrf-token")[0].getAttribute("content"))
     return fetch(url, {
         method: "POST",
         headers: headers,
@@ -19,6 +20,7 @@ export function postResources<T>(url: string, body: T) {
 export function putResources<T>(url: string, body: T) {
     let headers = new Headers()
     headers.append('content-type', 'application/json')
+    headers.append('X-CSRF-Token', document.getElementsByName("csrf-token")[0].getAttribute("content"))
     return fetch(url, {
         method: "PUT",
         headers: headers,
@@ -29,6 +31,7 @@ export function putResources<T>(url: string, body: T) {
 export function deleteResources<T>(url: string, body: T) {
     let headers = new Headers()
     headers.append('content-type', 'application/json')
+    headers.append('X-CSRF-Token', document.getElementsByName("csrf-token")[0].getAttribute("content"))
     return fetch(url, {
         method: "DELETE",
         headers: headers,
