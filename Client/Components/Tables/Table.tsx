@@ -38,8 +38,8 @@ export class Table extends React.Component<TableProps, TableState>{
 
             this.setState({ executingRequest: true }, async () => {
                 let table = lodash.snakeCase(this.props.columns.name)
-                await Api.updateRow(table, this.state.currentData)
-                this.setState({ executingRequest: false, serverData: this.state.currentData })
+                let sData = await Api.updateRow(table, this.state.currentData).then(res => res.json())
+                this.setState({ executingRequest: false, serverData: sData })
             })
         }, 1000)
     }
@@ -60,7 +60,7 @@ export class Table extends React.Component<TableProps, TableState>{
             <div className="table-item-contents">{this.renderColumnItem()}</div>
             <button className="table-row-action-button" onClick={() => this.setState({ expand: !this.state.expand })}>{this.state.expand ? '-' : '+'}</button>
             {
-                this.props.columns.columns.filter(c => lodash.snakeCase(c.name) === "position") ? <>
+                this.props.columns.columns.filter(c => lodash.snakeCase(c.name) === "position").length > 0 ? <>
                     <button className="table-row-action-button" onClick={() => this.changePosition("up")}><span className="position-changer">⋀</span></button>
                     <button className="table-row-action-button" onClick={() => this.changePosition("down")}><span className="position-changer">⋁</span></button>
                 </> : null

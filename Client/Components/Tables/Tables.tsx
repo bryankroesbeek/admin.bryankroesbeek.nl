@@ -33,7 +33,13 @@ export class Tables extends React.Component<TableProps, TableState>{
         let columns = await Api.getColumns(this.props.table)
         let data = await Api.getResources<any[]>(`/api/${this.props.table}/all`)
 
-        this.setState({ columns: columns, data: data.sort((a, b) => a.position - b.position) })
+        this.setState({
+            columns: columns, data: data.sort((a, b) => {
+                if (columns.columns.filter(c => lodash.snakeCase(c.name) === "position").length > 0)
+                    return a.position - b.position
+                return 0;
+            })
+        })
     }
 
     async deleteItem(id: number) {
@@ -81,7 +87,7 @@ export class Tables extends React.Component<TableProps, TableState>{
                             changePosition={(newPos: number, oldPos: number) => this.changePosition(newPos, oldPos)}
                             delete={(id: number) => this.deleteItem(id)}
                             update={(data: any) => this.updateItem(data)}
-                            data={{ ...data, position: index + 1 }}
+                            data={{ ...data }}
                             columns={this.state.columns === "loading" ? null : this.state.columns}
                         />
                     )
