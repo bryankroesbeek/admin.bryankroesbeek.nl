@@ -64,3 +64,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "pry", "~> 0.12.2"
 
 gem "pry-rails", "~> 0.3.7"
+
+gem "dotenv-rails", "~> 2.5"
