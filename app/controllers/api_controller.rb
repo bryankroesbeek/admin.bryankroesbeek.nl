@@ -22,13 +22,13 @@ class ApiController < ApplicationController
     end
 
     def get_model
-        render :json => downcase_keys(@model.all)
+        render :json => convert_keys(@model.all)
     end
 
     def create_model
         new_model = @model.new
         new_model.save
-        render :json => downcase_keys(new_model)
+        render :json => convert_keys(new_model)
     end
 
     def update_model
