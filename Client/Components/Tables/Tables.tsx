@@ -31,7 +31,7 @@ export class Tables extends React.Component<TableProps, TableState>{
 
 
         let columns = await Api.getColumns(this.props.table)
-        let data = await Api.getResources<any[]>(`/api/${this.props.table}api/all`)
+        let data = await Api.getResources<any[]>(`/api/${this.props.table}/all`)
 
         this.setState({ columns: columns, data: data.sort((a, b) => a.position - b.position) })
     }
