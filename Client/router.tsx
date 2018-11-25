@@ -24,17 +24,17 @@ export class MainRouter extends React.Component<{}, MainState>{
                 <div className="page">
                     <Switch>
                         <Route exact path="/login" component={() => <Login />} />
-                        <Route path=""><>
+                        <Route>
                             <div className="admin-content">
                                 <Sidebar />
                                 <div className="admin-table-content">
                                     <div className="admin-header" />
                                     <Switch>
-                                        <Route path="/:table" component={({ match }: any) => <Tables table={match.params['table']} />} />
+                                        <Route path="/:table" component={({ match }: any) => <TableRows key={`table-${match.params['table']}`} table={match.params['table']} />} />
                                     </Switch>
                                 </div>
                             </div>
-                        </></Route>
+                        </Route>
                     </Switch>
                 </div>
             </BrowserRouter>
