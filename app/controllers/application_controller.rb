@@ -16,7 +16,6 @@ class ApplicationController < ActionController::Base
             obj
         end
 
-        return data if data.length > 1
-        return data.first
+        return data
     end
 end
