@@ -33,7 +33,7 @@ class ApiController < ApplicationController
 
     def update_model
         new_data = JSON.parse(params[:_json])
-        Project.find(params[:id]).update(convert_keys(new_data, :camelcase))
+        @model.find(params[:id]).update(convert_keys(new_data, :camelcase).first)
 
         render :json => new_data
     end
