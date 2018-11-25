@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Link, Redirect, Switch } from 'react-router-dom'
 
 import { Sidebar } from './Components/Sidebar/Sidebar'
 import { Login } from './Components/Login/Login'
-import { Tables } from './Components/Tables/Tables'
+import { TableRows } from './Components/Tables/Tables'
 
 import * as Types from './api/types'
 

@@ -4,19 +4,19 @@ import * as lodash from 'lodash'
 import * as Api from '../../api/api'
 import { TableColumns } from '../../api/types'
 
-import { Table } from './Table'
+import { TableRow } from './Table'
 
-type TableProps = {
+type TableRowsProps = {
     table: string
 }
 
-type TableState = {
+type TableRowsState = {
     columns: TableColumns | "loading"
     data: any[] | "loading"
 }
 
-export class Tables extends React.Component<TableProps, TableState>{
-    constructor(props: TableProps) {
+export class TableRows extends React.Component<TableRowsProps, TableRowsState>{
+    constructor(props: TableRowsProps) {
         super(props)
 
         this.state = {
@@ -82,7 +82,7 @@ export class Tables extends React.Component<TableProps, TableState>{
             <div className="table-columns">
                 {
                     this.state.data.map((data, index) =>
-                        <Table
+                        <TableRow
                             key={data.id}
                             changePosition={(newPos: number, oldPos: number) => this.changePosition(newPos, oldPos)}
                             delete={(id: number) => this.deleteItem(id)}

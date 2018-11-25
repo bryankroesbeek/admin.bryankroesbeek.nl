@@ -4,7 +4,7 @@ import * as lodash from 'lodash'
 import * as Api from '../../api/api'
 import { TableColumns } from '../../api/types'
 
-type TableProps = {
+type TableRowProps = {
     data: any
     columns: TableColumns
     delete: (id: number) => void
@@ -12,15 +12,15 @@ type TableProps = {
     update: (data: any) => void
 }
 
-type TableState = {
+type TableRowState = {
     serverData: any
     currentData: any
     expand: boolean
     executingRequest: boolean
 }
 
-export class Table extends React.Component<TableProps, TableState>{
-    constructor(props: TableProps) {
+export class TableRow extends React.Component<TableRowProps, TableRowState>{
+    constructor(props: TableRowProps) {
         super(props)
 
         this.state = {
