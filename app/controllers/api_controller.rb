@@ -1,5 +1,5 @@
 class ApiController < ApplicationController
-    protect_from_forgery
+    protect_from_forgery with: :exception
 
     before_action :set_model
 
