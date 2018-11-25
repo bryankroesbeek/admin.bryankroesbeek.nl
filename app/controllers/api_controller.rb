@@ -32,7 +32,10 @@ class ApiController < ApplicationController
     end
 
     def update_model
-        binding.pry
+        new_data = JSON.parse(params[:_json])
+        Project.find(params[:id]).update(convert_keys(new_data, :camelcase))
+
+        render :json => new_data
     end
 
     def delete_model
