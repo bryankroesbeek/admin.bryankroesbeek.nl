@@ -53,7 +53,7 @@ export function createRow(table: string): Promise<any> {
 }
 
 export function updateRow(table: string, data: any): Promise<any> {
-    return putResources(`/api/${table}/update`, JSON.stringify(data))
+    return putResources(`/api/${table}/${data.id}/update`, JSON.stringify(data))
 }
 
 export function deleteRow(table: string, id: number): Promise<any> {
