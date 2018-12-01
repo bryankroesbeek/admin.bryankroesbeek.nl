@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+    before_action :validate_user_token
+
     def convert_keys(model_data, option = :downcase)
         return unless model_data.present?
 
@@ -17,5 +19,10 @@ class ApplicationController < ActionController::Base
         end
 
         return data
+    end
+
+    def validate_user_token
+        return true if session[:user_token].present?
+        redirect_to "/login" if request.path != "/login"
     end
 end
