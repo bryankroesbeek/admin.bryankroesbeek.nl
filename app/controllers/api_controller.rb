@@ -4,9 +4,7 @@ class ApiController < ApplicationController
     before_action :set_model
 
     def get_tables
-        render :json => ActiveRecord::Base.connection.tables.select{|table| 
-            table != "AuthToken" && table != "__EFMigrationsHistory"
-        }
+        render :json => get_table_names
     end
 
     def get_columns
@@ -44,6 +42,18 @@ class ApiController < ApplicationController
 
     def set_model
         return unless params[:table].present?
-        @model = params[:table].singularize.camelize.constantize
+
+        table_name = params[:table].singularize.camelize
+        unless get_table_names.include?(table_name)
+            head 400 and return false
+        end
+
+        @model = table_name.constantize
+    end
+
+    def get_table_names
+        ActiveRecord::Base.connection.tables.select do |table| 
+            table != "AuthToken" && table != "__EFMigrationsHistory"
+        end
     end
 end
