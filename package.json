@@ -22,10 +22,10 @@
   "homepage": "https://gitlab.com/limecta/admin.bryankroesbeek.nl#README",
   "dependencies": {
     "awesome-typescript-loader": "^5.2.1",
-    "gulp": "^4.0.0",
-    "gulp-clean-css": "^4.0.0",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.10.0",
     "gulp-concat": "^2.6.1",
-    "gulp-sass": "^4.0.2",
+    "gulp-sass": "^4.0.1",
     "lodash": "^4.17.11",
     "moment": "^2.22.2",
     "react": "^16.6.3",
