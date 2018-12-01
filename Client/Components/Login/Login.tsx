@@ -9,7 +9,7 @@ type LoginProps = {}
 type LoginState = {
     username: string
     password: string
-    wrong: boolean
+    loginState: "" | "failed" | "succes"
 }
 
 export class Login extends React.Component<LoginProps, LoginState> {
@@ -19,11 +19,11 @@ export class Login extends React.Component<LoginProps, LoginState> {
         this.state = {
             username: null,
             password: null,
-            wrong: false
+            loginState: ""
         }
     }
 
-    login(input: React.FormEvent<HTMLFormElement>) {
+    async login(input: React.FormEvent<HTMLFormElement>) {
         input.preventDefault()
 
         let data = JSON.stringify({
@@ -31,17 +31,23 @@ export class Login extends React.Component<LoginProps, LoginState> {
             password: this.state.password
         })
 
-        Api.postResources("/api/authentication/login", data)
-        // this.setState({ ...this.state, wrong: !this.state.wrong })
-        // window.location.href = "/admin"
+        let res = await Api.postResources("/api/authentication/login", data)
+        if (!res.ok) {
+            this.setState({ ...this.state, loginState: "failed" })
+            return
+        }
+
+        this.setState({loginState: "succes"})
     }
 
     render() {
+        if (this.state.loginState === "succes") return <Redirect to="/" />
+
         return (
             <div className="login-block">
                 <div className="login-content">
                     <div className="login-title">
-                        <h2 className={`title-text${this.state.wrong ? ' wrong' : ""}`}>Login</h2>
+                        <h2 className={`title-text ${this.state.loginState}`}>Login</h2>
                     </div>
                     <form className="login-form" onSubmit={e => this.login(e)} >
                         <div className="login-fields">

@@ -19,3 +19,8 @@ export type TableColumns = {
         type: string
     }[]
 }
+
+export type LoginData = {
+    name: string
+    pass: string
+}
