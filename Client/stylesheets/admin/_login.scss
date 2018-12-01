@@ -31,11 +31,11 @@ $green: #36aa36;
     font-size: 50px;
     color: #eeeeee;
     text-shadow: 0 0 5px #ffffff;
-    &.wrong{
+    &.failed{
         color: #c76953;
         text-shadow: 0 0 5px #ff5656;
     }
-    &.correct{
+    &.succes{
         color: #56ff56;
         text-shadow: 0 0 5px #56ff56;
     }
