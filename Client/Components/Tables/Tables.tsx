@@ -4,7 +4,7 @@ import * as lodash from 'lodash'
 import * as Api from '../../api/api'
 import { TableColumns } from '../../api/types'
 
-import { TableRow } from './Table'
+import { TableRow } from './TableRow'
 
 type TableRowsProps = {
     table: string
