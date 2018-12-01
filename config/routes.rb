@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   post '/api/:table/create', to: 'api#create_model'
   put '/api/:table/:id/update', to: 'api#update_model'
   delete '/api/:table/:id', to: 'api#delete_model'
+
+  post 'api/authentication/login', to: 'session#login'
+  post 'api/authentication.logout', to: 'session#logout'
   
   get '/', to: 'home#index'
   get '/*path', to: 'home#index'
