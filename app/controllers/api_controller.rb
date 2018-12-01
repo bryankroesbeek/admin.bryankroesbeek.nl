@@ -29,6 +29,16 @@ class ApiController < ApplicationController
         render :json => convert_keys(new_model).first
     end
 
+    def create_from_data 
+        data = [JSON.parse(params[:_json])].flatten
+
+        data.each do |d|
+            @model.create(d)
+        end
+
+        render plain: "OK"
+    end
+
     def update_model
         new_data = JSON.parse(params[:_json])
         @model.find(params[:id]).update(convert_keys(new_data, :camelcase).first)

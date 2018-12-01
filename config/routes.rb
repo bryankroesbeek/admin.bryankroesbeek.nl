@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   
   get '/api/:table/all', to: 'api#get_model'
   post '/api/:table/create', to: 'api#create_model'
+  post '/api/:table/create_data', to: 'api#create_from_data'
   put '/api/:table/:id/update', to: 'api#update_model'
   delete '/api/:table/:id', to: 'api#delete_model'
 

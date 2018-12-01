@@ -9,7 +9,7 @@ class SessionController < ApplicationController
         end
         
         session[:user_token] = generate_token 
-        session[:expires_at] = DateTime.now + 10.minutes
+        session[:expires_at] = 10.minutes.from_now
         render plain: "OK"
     end
 
