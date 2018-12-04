@@ -30,7 +30,7 @@ class ApiController < ApplicationController
     end
 
     def create_from_data 
-        data = [JSON.parse(params[:_json])].flatten
+        data = [JSON.parse(request.body.read)].flatten
 
         data.each do |d|
             @model.create(d)
@@ -40,7 +40,7 @@ class ApiController < ApplicationController
     end
 
     def update_model
-        new_data = JSON.parse(params[:_json])
+        new_data = JSON.parse(request.body.read)
         @model.find(params[:id]).update(convert_keys(new_data, :camelcase).first)
 
         render :json => new_data
