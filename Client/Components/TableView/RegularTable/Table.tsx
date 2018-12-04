@@ -1,8 +1,8 @@
 import * as React from 'react'
 import * as lodash from 'lodash'
 
-import * as Api from '../../api/api'
-import { TableColumns } from '../../api/types'
+import * as Api from '../../../api/api'
+import { TableColumns } from '../../../api/types'
 
 import { TableRow } from './TableRow'
 
@@ -15,7 +15,7 @@ type TableRowsState = {
     data: any[] | "loading"
 }
 
-export class TableRows extends React.Component<TableRowsProps, TableRowsState>{
+export class Table extends React.Component<TableRowsProps, TableRowsState>{
     constructor(props: TableRowsProps) {
         super(props)
 

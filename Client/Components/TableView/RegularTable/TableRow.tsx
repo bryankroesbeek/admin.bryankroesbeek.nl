@@ -1,8 +1,8 @@
 import * as React from 'react'
 import * as lodash from 'lodash'
 
-import * as Api from '../../api/api'
-import { TableColumns } from '../../api/types'
+import * as Api from '../../../api/api'
+import { TableColumns } from '../../../api/types'
 
 type TableRowProps = {
     data: any
