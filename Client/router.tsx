@@ -3,12 +3,13 @@ import { BrowserRouter, Route, Link, Redirect, Switch } from 'react-router-dom'
 
 import { Sidebar } from './Components/Sidebar/Sidebar'
 import { Login } from './Components/Login/Login'
-import { TableRows } from './Components/Tables/Tables'
+import { Table } from './Components/TableView/RegularTable/Table'
 
 import * as Types from './api/types'
+import { TableView } from './Components/TableView/TableView';
 
 type MainState = {
-    
+
 }
 
 export class MainRouter extends React.Component<{}, MainState>{
@@ -30,7 +31,12 @@ export class MainRouter extends React.Component<{}, MainState>{
                                 <div className="admin-table-content">
                                     <div className="admin-header" />
                                     <Switch>
-                                        <Route path="/:table" component={({ match }: any) => <TableRows key={`table-${match.params['table']}`} table={match.params['table']} />} />
+                                        <Route path="/:table" component={({ match }: any) =>
+                                            <TableView
+                                                key={`table-${match.params['table']}`}
+                                                table={match.params['table']}
+                                            />
+                                        } />
                                     </Switch>
                                 </div>
                             </div>
