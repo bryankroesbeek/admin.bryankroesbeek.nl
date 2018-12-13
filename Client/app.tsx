@@ -8,9 +8,7 @@ class Application extends React.Component<{}, {}>{
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    ReactDom.render(
-        <Application />,
-        document.getElementById("react-app")
-    )
-})
+ReactDom.render(
+    <Application />,
+    document.getElementById("react-app")
+)
