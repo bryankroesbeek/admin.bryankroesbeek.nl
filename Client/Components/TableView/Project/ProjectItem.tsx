@@ -30,14 +30,16 @@ export class ProjectItem extends React.Component<ProjectItemProps, ProjectItemSt
 
     componentDidMount() {
         setInterval(() => {
+            if (this.state.executingRequest) return
+            
             let jsonProject = JSON.stringify(this.state.project)
             let jsonServerProject = JSON.stringify(this.state.serverProject)
             if (jsonProject === jsonServerProject) return
 
-            this.setState({executingRequest: true}, async () => {
+            this.setState({ executingRequest: true }, async () => {
                 let res = await Api.putResources(`/api/project/${this.state.project.id}/update`, this.state.project)
                 let proj: Types.Project = await res.json()
-                
+
                 this.setState({ serverProject: proj, executingRequest: false })
             })
         }, 1000)
