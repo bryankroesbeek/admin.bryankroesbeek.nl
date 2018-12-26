@@ -3,7 +3,6 @@ import * as lodash from 'lodash'
 
 import * as Api from '../../api/api'
 import { TableColumns } from '../../api/types'
-import { Table } from './RegularTable/Table'
 import { Projects } from './Project/Project'
 import { CubeSolve } from './CubeSolve/CubeSolve';
 
@@ -38,8 +37,5 @@ export class TableView extends React.Component<TableViewProps, TableViewState>{
 
         if (this.props.table === "Project")
             return <Projects />
-
-        return <Table table={this.props.table} />
-
     }
 }
