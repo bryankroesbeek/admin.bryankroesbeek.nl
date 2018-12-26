@@ -27,11 +27,11 @@ ActiveRecord::Schema.define(version: 0) do
   end
 
   create_table "Project", primary_key: "Id", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+    t.string "Name", limit: 100, default: "", null: false
+    t.string "Link", default: "", null: false
     t.text "Description"
-    t.string "Link", null: false
-    t.string "Name", limit: 100, null: false
-    t.integer "Position", null: false
-    t.binary "Visible", limit: 1, null: false
+    t.integer "Position", default: 0, null: false
+    t.binary "Visible", limit: 1, default: "b'0'", null: false
   end
 
   create_table "__EFMigrationsHistory", primary_key: "MigrationId", id: :string, limit: 95, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
