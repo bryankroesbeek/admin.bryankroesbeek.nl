@@ -14,6 +14,7 @@ type ProjectItemState = {
     serverProject: Types.Project
     executingRequest: boolean
     expanded: boolean
+    deleted: boolean
 }
 
 export class ProjectItem extends React.Component<ProjectItemProps, ProjectItemState>{
@@ -24,14 +25,21 @@ export class ProjectItem extends React.Component<ProjectItemProps, ProjectItemSt
             project: this.props.project,
             serverProject: this.props.project,
             executingRequest: false,
-            expanded: false
+            expanded: false,
+            deleted: false
         }
+    }
+
+    static getDerivedStateFromProps(newProps: ProjectItemProps, prevState: ProjectItemState) {
+        let newState: ProjectItemState = { ...prevState, project: { ...prevState.project, position: newProps.project.position } }
+        return newState
     }
 
     componentDidMount() {
         setInterval(() => {
+            if (this.state.deleted) return
             if (this.state.executingRequest) return
-            
+
             let jsonProject = JSON.stringify(this.state.project)
             let jsonServerProject = JSON.stringify(this.state.serverProject)
             if (jsonProject === jsonServerProject) return
@@ -43,6 +51,12 @@ export class ProjectItem extends React.Component<ProjectItemProps, ProjectItemSt
                 this.setState({ serverProject: proj, executingRequest: false })
             })
         }, 1000)
+    }
+
+    delete(id: number) {
+        this.setState({ deleted: true }, () => {
+            this.props.delete(id)
+        })
     }
 
     renderInput<T>(inputTitle: string, element: T) {
@@ -100,7 +114,7 @@ export class ProjectItem extends React.Component<ProjectItemProps, ProjectItemSt
             <button className="table-row-action-button" onClick={() => this.setState({ expanded: !this.state.expanded })}>{this.state.expanded ? '-' : '+'}</button>
             <button className="table-row-action-button" onClick={() => this.props.changePosition(this.state.project.id, -1)}><span className="position-changer">⋀</span></button>
             <button className="table-row-action-button" onClick={() => this.props.changePosition(this.state.project.id, 1)}><span className="position-changer">⋁</span></button>
-            <button className="table-row-action-button" onClick={() => this.props.delete(this.state.project.id)}>×</button>
+            <button className="table-row-action-button" onClick={() => this.delete(this.state.project.id)}>×</button>
         </div>
     }
 }

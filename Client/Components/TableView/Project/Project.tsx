@@ -10,8 +10,6 @@ type ProjectProps = {
 
 type ProjectState = {
     data: Types.Project[] | "loading"
-    serverData: Types.Project[]
-    expandedProject: number[]
 }
 
 export class Projects extends React.Component<ProjectProps, ProjectState>{
@@ -20,8 +18,6 @@ export class Projects extends React.Component<ProjectProps, ProjectState>{
 
         this.state = {
             data: "loading",
-            serverData: [],
-            expandedProject: []
         }
     }
 
@@ -47,9 +43,13 @@ export class Projects extends React.Component<ProjectProps, ProjectState>{
         this.setState({ data: newData.sort((a, b) => a.position - b.position) })
     }
 
-    deleteItem(id: number) {
+    async deleteItem(id: number) {
         if (this.state.data === "loading") return
-        let data = this.state.data.filter(d => d.id === id)
+
+        await Api.deleteRow("project", id)
+
+        let newPos = 0
+        let data = this.state.data.filter(d => d.id !== id).map(p => ({ ...p, position: ++newPos }))
         this.setState({ data: data })
     }
 
@@ -64,6 +64,15 @@ export class Projects extends React.Component<ProjectProps, ProjectState>{
                     delete={(id) => this.deleteItem(id)}
                 />
             )}
+            <button className="tables-create-new" onClick={async () => {
+                if (this.state.data === "loading") return
+
+                let project = await Api.createRow<Types.Project>("project")
+                let newPos = 0
+                let data = [...this.state.data, project].map(p => ({ ...p, position: ++newPos }))
+                this.setState({ data: data })
+            }}>Create new</button>
+            <button className="tables-create-new" onClick={() => console.log(this.state.data)}>WAT</button>
         </>
     }
 }
