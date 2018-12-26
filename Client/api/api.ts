@@ -51,14 +51,16 @@ export function getColumns(table: string): Promise<TableColumns> {
     return getResources<TableColumns>(`/api/${table}/columns`)
 }
 
-export function createRow(table: string): Promise<any> {
-    return postResources(`/api/${table}/create`, {})
+export function createRow<T>(table: string, body?: T): Promise<T> {
+    return postResources(`/api/${table}/create`, body)
+        .then(r => r.json())
 }
 
-export function updateRow(table: string, data: any): Promise<any> {
-    return putResources(`/api/${table}/${data.id}/update`, JSON.stringify(data))
+export function updateRow<T>(table: string, id: number, data: T): Promise<T> {
+    return putResources(`/api/${table}/${id}/update`, JSON.stringify(data))
+        .then(r => r.json())
 }
 
-export function deleteRow(table: string, id: number): Promise<any> {
+export function deleteRow(table: string, id: number) {
     return deleteResources(`/api/${table}/${id}`, {})
 }
