@@ -22,7 +22,15 @@ class ApplicationController < ActionController::Base
     end
 
     def validate_user_token
-        return true if session[:user_token].present?
-        redirect_to "/login" if request.path != "/login"
+        if session[:user_token].present?
+            return if session[:expires_at] > Time.now
+        end
+
+        return head :unauthorized if request.path.starts_with?("/api")
+
+        return if request.path == "/login"
+        return redirect_to "/login" if request.path != "/login"
+
+        return head :unauthorized
     end
 end

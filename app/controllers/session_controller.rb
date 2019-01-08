@@ -4,8 +4,9 @@ class SessionController < ApplicationController
     def login
         json = JSON.parse(params[:_json])
 
+        # TODO: correct credentials validation
         unless json['username'] == ENV['ADMIN_USER'] && json['password'] == ENV['ADMIN_PASS']
-            head 401 and return
+            return head :unauthorized
         end
         
         session[:user_token] = generate_token 
