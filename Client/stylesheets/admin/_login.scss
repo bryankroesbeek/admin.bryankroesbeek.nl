@@ -16,6 +16,17 @@ $green: #36aa36;
     // border: 1px solid darken($color: #56aa56, $amount: 20%);
     border-radius: 5px;
     box-shadow: 2px 3px 10px #7f7f7f;
+
+    &.failed {
+        background-color: #aa3636;
+    }
+
+    &.success {
+        background-color: #36aa36;
+    }
+
+    transition-duration: 1.5s;
+    transition-timing-function: ease;
 }
 
 .login-title {
@@ -32,11 +43,11 @@ $green: #36aa36;
     color: #eeeeee;
     text-shadow: 0 0 5px #ffffff;
     &.failed{
-        color: #c76953;
+        color: #ff0000;
         text-shadow: 0 0 5px #ff5656;
     }
-    &.succes{
-        color: #56ff56;
+    &.success{
+        color: #00ff00;
         text-shadow: 0 0 5px #56ff56;
     }
 
@@ -76,14 +87,14 @@ $green: #36aa36;
     outline: none;
     color: #ffffff;
     font-size: 16px;
-    background: $green;
-    border-bottom: 2px solid darken($color: $green, $amount: 10%);
+    background: #00000000;
+    border-bottom: 2px solid #00000033;
     &:focus{
-        border-bottom: 2px solid lighten($color: $green, $amount: 20%);        
+        border-bottom: 2px solid #ffffff33;        
     }
 
     &::placeholder{
-        color: darken($color: $green, $amount: 10%);
+        color: #00000040;
     }
 
     transition-property: border;
@@ -96,16 +107,16 @@ $green: #36aa36;
     width: 100%;
     height: 30px;
     margin: 10px 0;
-    background-color: lighten($color: $green, $amount: 15%);
+    background-color: #ffffff26;
     outline: none;
     border-radius: 3px;
 
     &:hover {
-        background-color: darken($color: $green, $amount: 5%);
+        background-color: #00000015;
         color: #eeeeee;
     }
     &:active{
-        background-color: darken($color: $green, $amount: 15%);
+        background-color: #00000015;
         color: #eeeeee;
     }
 

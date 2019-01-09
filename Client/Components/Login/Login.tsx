@@ -48,7 +48,9 @@ export class Login extends React.Component<LoginProps, LoginState> {
         }
         
         this.setState({ loginState: "success" }, () => {
-            document.location.href = "/"
+            setTimeout(() => {
+                document.location.href = "/"
+            }, 1500)
         })
     }
 
@@ -61,7 +63,7 @@ export class Login extends React.Component<LoginProps, LoginState> {
 
         return (
             <div className="login-block">
-                <div className="login-content">
+                <div className={`login-content ${this.state.loginState}`}>
                     <div className="login-title">
                         <h2 className={`title-text ${this.state.loginState}`}>Login</h2>
                     </div>
