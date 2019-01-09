@@ -23,7 +23,10 @@ class ApplicationController < ActionController::Base
 
     def validate_user_token
         if session[:user_token].present?
-            return if session[:expires_at] > Time.now
+            if session[:expires_at] > Time.now
+                session[:expires_at] = 5.minutes.from_now
+                return
+            end
         end
 
         return head :unauthorized if request.path.starts_with?("/api")

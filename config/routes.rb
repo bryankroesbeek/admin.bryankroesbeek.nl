@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   delete '/api/:table/:id', to: 'api#delete_model'
 
   post 'api/authentication/login', to: 'session#login'
-  post 'api/authentication.logout', to: 'session#logout'
+  post 'api/authentication/logout', to: 'session#logout'
+
+  get '/api/authentication/login_status', to: 'session#check_session'
   
   get '/', to: 'home#index'
   get '/*path', to: 'home#index'
