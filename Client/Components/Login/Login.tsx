@@ -9,7 +9,8 @@ type LoginProps = {}
 type LoginState = {
     username: string
     password: string
-    loginState: "" | "failed" | "succes"
+    loginState: "" | "failed" | "success"
+    redirectTo: { path: string } | "none" | "loading"
 }
 
 export class Login extends React.Component<LoginProps, LoginState> {
@@ -19,8 +20,17 @@ export class Login extends React.Component<LoginProps, LoginState> {
         this.state = {
             username: null,
             password: null,
-            loginState: ""
+            loginState: "",
+            redirectTo: "loading"
         }
+    }
+
+    async componentDidMount() {
+        let res = await Api.getResources<{ status: "login" | "logged_in" }>("/api/authentication/login_status")
+        if (res.status === "logged_in") {
+            this.setState({ redirectTo: { path: "/" } })
+        }
+        this.setState({ redirectTo: "none" })
     }
 
     async login(input: React.FormEvent<HTMLFormElement>) {
@@ -36,12 +46,18 @@ export class Login extends React.Component<LoginProps, LoginState> {
             this.setState({ ...this.state, loginState: "failed" })
             return
         }
-
-        this.setState({loginState: "succes"})
+        
+        this.setState({ loginState: "success" }, () => {
+            document.location.href = "/"
+        })
     }
 
     render() {
-        if (this.state.loginState === "succes") return <Redirect to="/" />
+        if (this.state.redirectTo === "loading") return null
+
+        if (this.state.redirectTo !== "none") {
+            return <Redirect to={this.state.redirectTo.path} />
+        }
 
         return (
             <div className="login-block">
