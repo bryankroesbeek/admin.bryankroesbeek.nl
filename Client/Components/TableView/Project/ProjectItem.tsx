@@ -93,7 +93,7 @@ export class ProjectItem extends React.Component<ProjectItemProps, ProjectItemSt
                     {this.renderInput("Description",
                         <textarea
                             className="column-item-value large"
-                            value={this.state.project.description}
+                            value={this.state.project.description || ""}
                             onChange={v => {
                                 this.setState({ project: { ...this.state.project, description: v.target.value } })
                             }}
