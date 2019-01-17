@@ -4,8 +4,11 @@ class SessionController < ApplicationController
     def login
         json = JSON.parse(params[:_json])
 
-        # TODO: correct credentials validation
-        unless json['username'] == ENV['ADMIN_USER'] && json['password'] == ENV['ADMIN_PASS']
+        hashed_pass = BCrypt::Password.new(ENV['ADMIN_PASS'])
+        correct_password = hashed_pass == "#{json['password']}#{ENV['PASS_SALT']}"
+        correct_user = json['username'] == ENV['ADMIN_USER']
+
+        unless correct_user && correct_password
             return head :unauthorized
         end
         

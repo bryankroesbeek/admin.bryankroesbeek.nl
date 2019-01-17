@@ -66,3 +66,5 @@ gem "pry", "~> 0.12.2"
 gem "pry-rails", "~> 0.3.7"
 
 gem "dotenv-rails", "~> 2.5"
+
+gem "bcrypt", "~> 3.1"
