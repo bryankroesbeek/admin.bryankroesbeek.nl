@@ -5,6 +5,7 @@ WORKDIR /application
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 RUN apt install -y nodejs
 
+ENV RAILS_ENV=production
 
 COPY package.json ./
 RUN npm install
