@@ -72,7 +72,6 @@ export class Projects extends React.Component<ProjectProps, ProjectState>{
                 let data = [...this.state.data, project].map(p => ({ ...p, position: ++newPos }))
                 this.setState({ data: data })
             }}>Create new</button>
-            <button className="tables-create-new" onClick={() => console.log(this.state.data)}>WAT</button>
         </>
     }
 }
