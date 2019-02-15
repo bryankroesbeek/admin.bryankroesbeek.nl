@@ -7,6 +7,8 @@ RUN apt install -y nodejs
 
 ENV RAILS_ENV=production
 
+RUN bundle install
+
 COPY package.json ./
 RUN npm install
 
@@ -15,6 +17,6 @@ COPY ./ ./
 RUN ./node_modules/.bin/gulp
 RUN ./node_modules/.bin/webpack -p
 
-RUN bundle install
+RUN bundle exec rails assets:precompile
 
 CMD ["bundle", "exec", "rails", "server"]
