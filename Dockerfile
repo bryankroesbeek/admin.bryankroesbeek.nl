@@ -7,6 +7,8 @@ RUN apt install -y nodejs
 
 ENV RAILS_ENV=production
 
+COPY Gemfile ./
+COPY Gemfile.lock ./
 RUN bundle install
 
 COPY package.json ./
