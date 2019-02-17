@@ -12,18 +12,12 @@
 
 ActiveRecord::Schema.define(version: 0) do
 
-  create_table "AuthToken", primary_key: "Id", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.string "Token"
-    t.bigint "CreatedAt", null: false
-    t.bigint "ExpiresAt", null: false
-  end
-
-  create_table "CubeSolve", primary_key: "Id", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.string "Scramble", default: ""
-    t.integer "Time", default: 0, null: false
-    t.string "PuzzleType", limit: 100, default: "", null: false
-    t.string "Penalty", limit: 100, default: ""
-    t.bigint "TimeStampSolved", null: false
+  create_table "Experience", primary_key: "Id", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+    t.string "Company", default: "", null: false
+    t.string "Position", default: "", null: false
+    t.integer "StartYear"
+    t.integer "EndYear"
+    t.text "Description"
   end
 
   create_table "Project", primary_key: "Id", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|

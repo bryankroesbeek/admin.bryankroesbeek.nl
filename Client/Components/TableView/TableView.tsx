@@ -5,6 +5,7 @@ import * as Api from '../../api/api'
 import { TableColumns } from '../../api/types'
 import { Projects } from './Project/Project'
 import { CubeSolve } from './CubeSolve/CubeSolve';
+import { ExperienceComponent } from './Experience/Experience';
 
 type TableViewProps = {
     table: string
@@ -37,5 +38,8 @@ export class TableView extends React.Component<TableViewProps, TableViewState>{
 
         if (this.props.table === "Project")
             return <Projects />
+
+        if (this.props.table === "Experience")
+            return <ExperienceComponent />
     }
 }

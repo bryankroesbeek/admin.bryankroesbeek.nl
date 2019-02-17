@@ -15,3 +15,12 @@ export type CubeSolve = {
     penalty: "" | "+2" | "DNF"
     time_stamp_solved: number
 }
+
+export type Experience = {
+    id: number
+    company: string
+    position: string
+    start_year: number
+    end_year: number
+    description: string
+}
