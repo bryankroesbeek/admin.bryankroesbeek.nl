@@ -12,23 +12,26 @@
 
 ActiveRecord::Schema.define(version: 0) do
 
-  create_table "Experience", primary_key: "Id", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.string "Company", default: "", null: false
-    t.string "Position", default: "", null: false
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "Experience", primary_key: "Id", id: :serial, force: :cascade do |t|
+    t.string "Company", limit: 255, default: "", null: false
+    t.string "Position", limit: 255, default: "", null: false
     t.integer "StartYear"
     t.integer "EndYear"
     t.text "Description"
   end
 
-  create_table "Project", primary_key: "Id", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "Project", primary_key: "Id", id: :serial, force: :cascade do |t|
     t.string "Name", limit: 100, default: "", null: false
-    t.string "Link", default: "", null: false
+    t.string "Link", limit: 255, default: "", null: false
     t.text "Description"
     t.integer "Position", default: 0, null: false
-    t.binary "Visible", limit: 1, default: "b'0'", null: false
+    t.boolean "Visible", default: false, null: false
   end
 
-  create_table "__EFMigrationsHistory", primary_key: "MigrationId", id: :string, limit: 95, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "__EFMigrationsHistory", primary_key: "MigrationId", id: :string, limit: 150, force: :cascade do |t|
     t.string "ProductVersion", limit: 32, null: false
   end
 
