@@ -7,7 +7,7 @@ var cssPath = 'Client/stylesheets/**/*.css';
 var sassPath = 'Client/stylesheets/**/*.scss';
 
 function sass() {
-    return gulp.src(cssPath)
+    return gulp.src(sassPath)
         .pipe(gsass())
         .pipe(cleanCss())
         .pipe(concat('style.min.css'))
